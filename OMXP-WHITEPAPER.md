@@ -396,7 +396,7 @@ OMXP permission grants follow the OAuth 2.0 authorisation code pattern, adapted 
 Step 1: Application requests authorisation
 
   App → User's OMXP Vault:
-  GET /omxp/authorize
+  GET /v1/authorize
     ?app_id=cursor_ai
     &app_name=Cursor
     &scopes=read:facts,read:preferences
@@ -425,7 +425,7 @@ Step 3: Vault issues access token
 Step 4: App exchanges code for token
 
   App → Vault:
-  POST /omxp/token
+  POST /v1/token
   { code: "authorization_code" }
 
   Vault → App:
@@ -440,7 +440,7 @@ Step 4: App exchanges code for token
 Step 5: App reads memory
 
   App → Vault:
-  GET /omxp/memory?types=facts,preferences
+  GET /v1/memory?types=facts,preferences
   Authorization: Bearer omxp_tok_a1b2c3
 
   Vault → App:
@@ -477,9 +477,9 @@ The user dashboard provides complete visibility and control:
 ### 8.1 Base URL
 
 ```
-Local vault:      http://localhost:4737/omxp/v1
-Self-hosted:      https://your-domain.com/omxp/v1
-OMXP Cloud:       https://vault.omxp.anorthicstudio.com/omxp/v1
+Local vault:      http://localhost:4737/v1
+Self-hosted:      https://api.your-domain.com/v1
+OMXP Cloud:       https://api.omxp.anorthicstudio.com/v1
 ```
 
 ### 8.2 Endpoints
@@ -517,7 +517,7 @@ DELETE /vault              Delete vault (requires confirmation token)
 **List Memory Units**
 
 ```http
-GET /omxp/v1/memory?types=facts,preferences&limit=20
+GET /v1/memory?types=facts,preferences&limit=20
 Authorization: Bearer omxp_tok_a1b2c3
 
 200 OK
@@ -538,7 +538,7 @@ Authorization: Bearer omxp_tok_a1b2c3
 **Create Memory Unit**
 
 ```http
-POST /omxp/v1/memory
+POST /v1/memory
 Authorization: Bearer omxp_tok_a1b2c3
 Content-Type: application/json
 
