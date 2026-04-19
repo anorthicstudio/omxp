@@ -132,7 +132,7 @@ const SQLITE_SCHEMA_STATEMENTS = [
     created_at      TEXT NOT NULL,
     updated_at      TEXT NOT NULL,
     expires_at      TEXT,
-    tags            TEXT NOT NULL DEFAULT '[]',
+    tags            JSON NOT NULL DEFAULT '[]',
     visibility      TEXT NOT NULL DEFAULT 'shared'
       CHECK(visibility IN ('shared','private')),
     FOREIGN KEY(vault_id) REFERENCES vault(id)
@@ -145,7 +145,7 @@ const SQLITE_SCHEMA_STATEMENTS = [
     app_id                TEXT NOT NULL,
     app_name              TEXT NOT NULL,
     app_url               TEXT NOT NULL,
-    scopes                TEXT NOT NULL,
+    scopes                JSON NOT NULL,
     access_token          TEXT UNIQUE,
     refresh_token         TEXT UNIQUE,
     auth_code             TEXT UNIQUE,

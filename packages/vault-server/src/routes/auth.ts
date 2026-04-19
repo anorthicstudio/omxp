@@ -30,6 +30,9 @@ const TOKEN_LIFETIME_SECONDS = 7776000;
 /** Auth code validity: 10 minutes */
 const AUTH_CODE_LIFETIME_MS = 600000;
 
+/** Refresh token lifetime: 365 days in ms */
+const REFRESH_TOKEN_LIFETIME_MS = 31536000000;
+
 export function createAuthRoutes(db: DatabaseAdapter, config: ServerConfig): Hono<AppEnv> {
   const auth = new Hono<AppEnv>();
 
@@ -305,9 +308,18 @@ export function createAuthRoutes(db: DatabaseAdapter, config: ServerConfig): Hon
       );
     }
 
+    const grantedAt = new Date(permission.granted_at);
+    const now = new Date();
+
+    if (now.getTime() - grantedAt.getTime() > REFRESH_TOKEN_LIFETIME_MS) {
+      return c.json(
+        { error: 'invalid_grant', message: 'Refresh token has expired', status: 400 },
+        400,
+      );
+    }
+
     // Issue a new access token (refresh token stays the same)
     const newAccessToken = generateAccessToken();
-    const now = new Date();
     const expiresAt = new Date(now.getTime() + TOKEN_LIFETIME_SECONDS * 1000);
 
     await db.updatePermission(permission.vault_id, permission.app_id, {

@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS memory_units (
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
   expires_at TEXT,
-  tags TEXT NOT NULL DEFAULT '[]', -- JSON array
+  tags JSON NOT NULL DEFAULT '[]', -- JSON array
   visibility TEXT NOT NULL DEFAULT 'shared' 
     CHECK(visibility IN ('shared','private')),
   FOREIGN KEY(vault_id) REFERENCES vault(id)
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS permission_grants (
   app_id TEXT NOT NULL,
   app_name TEXT NOT NULL,
   app_url TEXT NOT NULL,
-  scopes TEXT NOT NULL,           -- JSON array
+  scopes JSON NOT NULL,           -- JSON array
   access_token TEXT UNIQUE,
   refresh_token TEXT UNIQUE,
   auth_code TEXT UNIQUE,
