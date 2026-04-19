@@ -1,0 +1,31 @@
+{
+  "name": "@omxp/sdk",
+  "version": "0.1.0",
+  "description": "JavaScript/TypeScript SDK for OMXP — Open Mind Exchange Protocol. Zero dependencies.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "keywords": ["omxp", "ai", "memory", "protocol", "sdk", "llm", "context"],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "rimraf": "^6.0.0",
+    "vitest": "^2.0.0"
+  }
+}

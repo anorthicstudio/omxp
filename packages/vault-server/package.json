@@ -1,0 +1,43 @@
+{
+  "name": "@omxp/vault-server",
+  "version": "0.1.0",
+  "description": "OMXP local vault server — stores and serves user AI memory",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.12.0",
+    "@omxp/core": "*",
+    "@supabase/supabase-js": "^2.45.0",
+    "hono": "^4.5.0",
+    "sql.js": "^1.11.0",
+    "nanoid": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/sql.js": "^1.4.0",
+    "@types/node": "^20.14.0",
+    "rimraf": "^6.0.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

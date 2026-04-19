@@ -1,0 +1,35 @@
+{
+  "name": "@omxp/cli",
+  "version": "0.1.0",
+  "description": "OMXP command line interface — manage your AI memory vault",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "omxp": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@omxp/core": "*",
+    "@omxp/vault-server": "*",
+    "commander": "^12.1.0",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "tsx": "^4.16.0",
+    "rimraf": "^6.0.0",
+    "vitest": "^2.0.0",
+    "@types/node": "^20.14.0"
+  }
+}
